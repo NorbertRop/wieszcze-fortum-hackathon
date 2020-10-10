@@ -9,17 +9,10 @@
 		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
-    
-    
-  <script> 
-    $(function(){
-      $("#map").load("images/map_test.html"); 
-    });
-  </script> 
 
 
   </head>
-  <body>
+  <body class="body">
 		
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar">
@@ -27,7 +20,7 @@
 		  
 	        <ul class="list-unstyled components mb-5">
 	          <li class="active">
-	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">View</a>
+	            <a id="view-option"href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">View</a>
 	            <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
                     <a id="click_timeline" href="#">Population</a>
@@ -40,11 +33,11 @@
                 </li>
 	            </ul>
 	          </li>
-	          <li>
-	              <a href="#">Suggest new station</a>
+	          <li id="suggest-option">
+	              <a  href="#">Suggest new station</a>
 	          </li>
-	          <li>
-              <a href="#">Put new station on the map</a>
+	          <li id="put-option">
+              <a  href="#">Put new station on the map</a>
 	          </li>
 	        </ul>
 
@@ -90,7 +83,7 @@
         <h2 id="main_window" class="mb-4">Population</h2>
           <div id="map_contener">
             <p align="center">
-            <iframe class="bordered" id="map_iframe" src="images/map_test.html" width="900px" height="400px" seamless></iframe>
+            <iframe class="bordered" id="map_iframe" width="900px" height="400px" seamless></iframe>
           </p>
           </div>
       </div>
@@ -112,23 +105,35 @@
 
     var map_iframe = document.getElementById('map_iframe')
 
+    
+    var view_option = document.getElementById('view-option')
+    var suggest_option = document.getElementById('suggest-option')
+    var put_option = document.getElementById('put-option')
+
     var main_window_big_screen = false
 
     selected_time_line = 0 // vals 0,1,2
+    map_iframe.src = 'images/map_population.html'
+
 
     timeline_element.onclick = function(){
       main_window.textContent = "Population"
       selected_time_line = 0
+
+      map_iframe.src = 'images/map_population.html'
+
     }
 
     time_span_element.onclick = function(){
       main_window.textContent = "Traffic volume"
       selected_time_line = 1
+      map_iframe.src = 'images/map_traffic.html'
     }
 
     full_time_element.onclick = function(){
       main_window.textContent = "Energy consumption"
       selected_time_line = 2
+      map_iframe.src = 'images/map_energy.html'
     }
 
     sidebar_collapse_icon.onclick = function(){
@@ -155,6 +160,10 @@
         map_iframe.height ="700";
         window.scrollBy(0, 120);
       }
+    }
+
+    put_option.onclick = function(){
+      main_window.classList.add['cursor_car']
     }
 
     </script>

@@ -32,12 +32,12 @@
                     <a id="click_full_time" href="#">Energy consumption</a>
                 </li>
 	            </ul>
+            </li>
+            <li id="put-option">
+              <a  href="#">Put new station on the map</a>
 	          </li>
 	          <li id="suggest-option">
 	              <a  href="#">Suggest new station</a>
-	          </li>
-	          <li id="put-option">
-              <a  href="#">Put new station on the map</a>
 	          </li>
 	        </ul>
 
@@ -110,7 +110,10 @@
     var suggest_option = document.getElementById('suggest-option')
     var put_option = document.getElementById('put-option')
 
+    var map_contener = document.getElementById('map_contener')
+
     var main_window_big_screen = false
+    var is_suggested = false
 
     selected_time_line = 0 // vals 0,1,2
     map_iframe.src = '/static/images/map_population.html'
@@ -162,9 +165,20 @@
       }
     }
 
-    put_option.onclick = function(){
-      main_window.classList.add['cursor_car']
+    suggest_option.onclick = function(){
+      main_window.textContent = "Proposed new station"
+      map_iframe.src = '/static/images/map_possible_stations2_n.html'  
     }
+
+    put_option.onclick = function(){
+      main_window.textContent = "Put new station on the map"
+      map_iframe.src = '/static/images/map_possible_stations_n.html'
+    }
+
+    document.addEventListener("keydown", event => {
+      if (event.keyCode == 32){
+      map_iframe.src = '/static/images/map_possible_stations2_n.html'}
+    });
 
     </script>
 </html>
